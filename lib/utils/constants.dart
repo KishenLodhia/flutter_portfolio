@@ -1,0 +1,1 @@
+enum Options { odd, even }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "238385492464",
+    "project_id": "kishen-portfolio-project",
+    "storage_bucket": "kishen-portfolio-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238385492464:android:5e11cfc75bc31b2b0b6d35",
+        "android_client_info": {
+          "package_name": "com.example.flutter_portfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238385492464-j71b0gjtl5h9789aa6n3e0oi6igskaci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBby_FS6Pw7CFaJWi8Cgznh5BEP6veH61c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238385492464-j71b0gjtl5h9789aa6n3e0oi6igskaci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
