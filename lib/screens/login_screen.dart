@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/screens/admin_screen.dart';
+import 'package:flutter_portfolio/screens/admin_screens/admin_screen.dart';
 import 'package:flutter_portfolio/utils/screen_helper.dart';
 import 'package:google_fonts/google_fonts.dart';
 

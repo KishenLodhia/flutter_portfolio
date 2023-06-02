@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/firebase_options.dart';
 import 'package:flutter_portfolio/model/project.dart';
-import 'package:flutter_portfolio/screens/admin_screen.dart';
+import 'package:flutter_portfolio/screens/admin_screens/admin_screen.dart';
 import 'package:flutter_portfolio/screens/login_screen.dart';
 import 'package:flutter_portfolio/screens/main_screen.dart';
 import 'package:flutter_portfolio/services/firebase_service.dart';
