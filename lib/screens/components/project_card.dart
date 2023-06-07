@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/model/project.dart';
 import 'package:flutter_portfolio/screens/project_details.dart';
@@ -26,12 +27,11 @@ class ProjectCard extends StatelessWidget {
               fit: FlexFit.tight,
               flex: 5,
               child: SizedBox(
-                width: double.infinity,
-                child: Image.network(
-                  project.image ?? '',
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  width: double.infinity,
+                  child: CachedNetworkImage(
+                    imageUrl: project.image ?? '',
+                    fit: BoxFit.cover,
+                  )),
             ),
             Flexible(
               flex: 1,

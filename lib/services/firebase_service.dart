@@ -11,4 +11,8 @@ class FirestoreService {
       }).toList();
     });
   }
+
+  void updateFile(Project project) {
+    _db.collection('projects').doc(project.name).set(project.createMap());
+  }
 }
