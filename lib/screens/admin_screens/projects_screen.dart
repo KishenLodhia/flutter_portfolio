@@ -5,8 +5,6 @@ import 'package:flutter_portfolio/utils/screen_helper.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_markdown_editor/widgets/markdown_form_field.dart';
-import 'package:super_editor/super_editor.dart';
 
 class AdminProjectScreen extends StatefulWidget {
   const AdminProjectScreen({super.key});

@@ -11,7 +11,7 @@ class CustomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       child: Row(
         children: [
           if (!ScreenHelper.isMobile(context)) ...[

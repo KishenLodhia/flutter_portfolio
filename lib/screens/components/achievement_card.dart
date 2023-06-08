@@ -65,7 +65,7 @@ class AchievementCard extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
