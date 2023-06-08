@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/model/project.dart';
+import 'package:flutter_portfolio/screens/components/custom_bottom_sheet.dart';
 import 'package:flutter_portfolio/screens/project_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,9 +29,12 @@ class ProjectCard extends StatelessWidget {
               flex: 5,
               child: SizedBox(
                   width: double.infinity,
-                  child: CachedNetworkImage(
-                    imageUrl: project.image ?? '',
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: project.name,
+                    child: CachedNetworkImage(
+                      imageUrl: project.image ?? '',
+                      fit: BoxFit.cover,
+                    ),
                   )),
             ),
             Flexible(
@@ -57,17 +61,33 @@ class ProjectCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ProjectDetails(project: project),
-                        ),
-                      );
-                    },
-                    child: const Text('View more'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              clipBehavior: Clip.hardEdge,
+                              context: context,
+                              builder: (context) {
+                                return CustomBottomSheet(project: project);
+                              });
+                        },
+                        child: const Text('Quick Glance'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ProjectDetails(project: project),
+                            ),
+                          );
+                        },
+                        child: const Text('View more'),
+                      ),
+                    ],
                   ),
                 ),
               ),

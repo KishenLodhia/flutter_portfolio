@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_portfolio/model/project.dart';
@@ -24,42 +25,17 @@ class ProjectDetails extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                ClipPath(
-                  clipper: TriangleClipper(),
-                  child: SizedBox(
-                      width: ScreenHelper.width(context),
-                      height: 500,
-                      child: Image.network(
-                        project.image ?? '',
-                        fit: BoxFit.cover,
-                      )),
+            SizedBox(
+              width: ScreenHelper.width(context),
+              height: ScreenHelper.isMobile(context) ? 200 : 500,
+              child: Hero(
+                transitionOnUserGestures: true,
+                tag: project.name,
+                child: CachedNetworkImage(
+                  imageUrl: project.image ?? '',
+                  fit: BoxFit.cover,
                 ),
-                // Positioned.fill(
-                //   child: Opacity(
-                //     opacity: 0.3,
-                //     child: Container(
-                //       color: Colors.black,
-                //     ),
-                //   ),
-                // ),
-                Positioned(
-                  bottom: 20,
-                  right: 20,
-                  child: SizedBox(
-                    width: ScreenHelper.width(context) * 0.6,
-                    child: Text(
-                      'Description\n${project.description ?? ''}',
-                      softWrap: true,
-                      style: GoogleFonts.audiowide(
-                          fontSize: ScreenHelper.isMobile(context) ? 12 : 15,
-                          color: Colors.black),
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
             Container(
               padding: EdgeInsets.symmetric(

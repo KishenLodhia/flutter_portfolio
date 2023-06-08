@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_portfolio/model/achievement.dart';
 import 'package:flutter_portfolio/model/project.dart';
 
 class FirestoreService {
@@ -8,6 +9,14 @@ class FirestoreService {
     return _db.collection('projects').snapshots().map((snapshot) {
       return snapshot.docs.map((document) {
         return Project.fromMap(document.data());
+      }).toList();
+    });
+  }
+
+  Stream<List<Achievement>> getAchievements() {
+    return _db.collection('achievements').snapshots().map((snapshot) {
+      return snapshot.docs.map((document) {
+        return Achievement.fromMap(document.data());
       }).toList();
     });
   }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/firebase_options.dart';
+import 'package:flutter_portfolio/model/achievement.dart';
 import 'package:flutter_portfolio/model/project.dart';
 import 'package:flutter_portfolio/screens/admin_screens/admin_screen.dart';
 import 'package:flutter_portfolio/screens/login_screen.dart';
@@ -19,6 +20,10 @@ Future<void> main() async {
       providers: [
         StreamProvider<List<Project>>(
           create: (_) => FirestoreService().getProjects(),
+          initialData: const [],
+        ),
+        StreamProvider<List<Achievement>>(
+          create: (_) => FirestoreService().getAchievements(),
           initialData: const [],
         )
       ],
