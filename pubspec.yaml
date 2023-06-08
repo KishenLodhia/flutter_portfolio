@@ -49,6 +49,7 @@ dependencies:
   cached_network_image: ^3.2.3
   simple_markdown_editor: ^0.2.0
   super_editor: ^0.2.6
+  pointer_interceptor: ^0.9.3+4
 
 dev_dependencies:
   flutter_test:

@@ -15,4 +15,12 @@ class FirestoreService {
   void updateFile(Project project) {
     _db.collection('projects').doc(project.name).set(project.createMap());
   }
+
+  void createProject(Project project) {
+    _db.collection('projects').doc(project.name).set(project.createMap());
+  }
+
+  void deleteProject(String projectName) {
+    _db.collection('projects').doc(projectName).delete();
+  }
 }

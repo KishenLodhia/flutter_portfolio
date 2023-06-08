@@ -19,7 +19,7 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.blue,
       appBar: AppBar(
         toolbarHeight: 100,
         title: Text(
@@ -29,8 +29,8 @@ class _AdminScreenState extends State<AdminScreen> {
       body: Row(
         children: [
           NavigationRail(
-            indicatorColor: Colors.grey,
-            backgroundColor: Colors.grey,
+            indicatorColor: Colors.blue.shade900,
+            backgroundColor: Colors.blue,
             labelType: NavigationRailLabelType.all,
             onDestinationSelected: (value) {
               setState(() {
