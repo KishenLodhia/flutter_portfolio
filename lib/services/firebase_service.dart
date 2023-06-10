@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_portfolio/model/achievement.dart';
+import 'package:flutter_portfolio/model/blog.dart';
 import 'package:flutter_portfolio/model/project.dart';
 
 class FirestoreService {
@@ -17,6 +18,14 @@ class FirestoreService {
     return _db.collection('achievements').snapshots().map((snapshot) {
       return snapshot.docs.map((document) {
         return Achievement.fromMap(document.data());
+      }).toList();
+    });
+  }
+
+  Stream<List<Blog>> getBlogs() {
+    return _db.collection('blogs').snapshots().map((snapshot) {
+      return snapshot.docs.map((document) {
+        return Blog.fromMap(document.data());
       }).toList();
     });
   }
