@@ -1,5 +1,5 @@
 name: flutter_portfolio
-description: A new Flutter project.
+description: Welcome to my Portfolio Project! As a software engineer, I invite you to explore my world of coding, innovation, and problem-solving. Discover the projects I've developed, the technologies I've mastered, and the challenges I've tackled. From web applications to mobile development and everything in between, join me on this journey through my portfolio and witness the artistry of software engineering. Let's push boundaries and create impactful solutions together.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -50,6 +50,7 @@ dependencies:
   simple_markdown_editor: ^0.2.0
   super_editor: ^0.2.6
   pointer_interceptor: ^0.9.3+4
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,8 @@ flutter:
   assets:
     - lib/assets/rive assets/test.riv
     - lib/assets/rive assets/scan.riv
+    - lib/assets/images/logo_hq.png
+    - lib/assets/images/logo_lq.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

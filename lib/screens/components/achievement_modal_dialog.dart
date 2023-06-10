@@ -13,7 +13,7 @@ class AchievementModalDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: Clip.antiAlias,
       content: Container(
         height: 500,
         width: ScreenHelper.width(context) * 0.8,
@@ -23,14 +23,23 @@ class AchievementModalDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: CachedNetworkImage(
-                  imageUrl: achievement.image,
-                  fit: BoxFit.cover,
+              Expanded(
+                child: InteractiveViewer(
+                  child: Container(
+                    height: 500,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(achievement.image),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              Flexible(
+              Expanded(
                 child: Container(
+                  height: 500,
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

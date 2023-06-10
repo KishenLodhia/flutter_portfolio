@@ -31,7 +31,7 @@ class BlogScreen extends StatelessWidget {
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                   ),
-                  clipBehavior: Clip.hardEdge,
+                  clipBehavior: Clip.antiAlias,
                   itemBuilder: (BuildContext context, int index) {
                     return BlogCard(blog: data[index]);
                   },

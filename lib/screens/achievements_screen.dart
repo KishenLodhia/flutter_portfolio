@@ -27,7 +27,7 @@ class AchievementsScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
                   scrollDirection: Axis.horizontal,
-                  clipBehavior: Clip.hardEdge,
+                  clipBehavior: Clip.antiAlias,
                   itemBuilder: (BuildContext context, int index) {
                     return AchievementCard(achievement: data[index]);
                   },

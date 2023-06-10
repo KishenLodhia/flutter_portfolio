@@ -16,7 +16,7 @@ class ProjectCard extends StatelessWidget {
       elevation: 10,
       margin: const EdgeInsets.all(10),
       color: const Color.fromRGBO(2, 77, 139, 1),
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: Clip.antiAlias,
       child: SizedBox(
         height: 250,
         width: 250,
@@ -67,7 +67,7 @@ class ProjectCard extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet(
-                              clipBehavior: Clip.hardEdge,
+                              clipBehavior: Clip.antiAlias,
                               context: context,
                               builder: (context) {
                                 return CustomBottomSheet(project: project);

@@ -3,8 +3,11 @@ import 'package:flutter_portfolio/globals.dart';
 import 'package:flutter_portfolio/screens/components/background.dart';
 import 'package:flutter_portfolio/screens/components/side_heading.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
+import 'package:flutter_portfolio/utils/extensions.dart';
 import 'package:flutter_portfolio/utils/screen_helper.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'dart:core';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,27 +16,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 1),
-    vsync: this,
-  )..forward();
-
-  late final Animation<Offset> animation = Tween<Offset>(
-    begin: const Offset(0, 0.2),
-    end: Offset.zero,
-  ).animate(CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  ));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,16 +33,13 @@ class _HomeScreenState extends State<HomeScreen>
               Expanded(
                 child: Stack(
                   children: [
-                    const RiveAnimation.network(
+                    const RiveAnimation.asset(
                       'lib/assets/rive assets/test.riv',
                       fit: BoxFit.fill,
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: SlideTransition(
-                        position: animation,
-                        child: const IntroContent(),
-                      ),
+                      child: IntroContent(),
                     ),
                   ],
                 ),
@@ -73,100 +53,104 @@ class _HomeScreenState extends State<HomeScreen>
 }
 
 class IntroContent extends StatelessWidget {
-  const IntroContent({
-    super.key,
-  });
+  IntroContent({super.key});
+  final List<String> texts = [
+    'Hi there!',
+    "Welcome to my portfolio!",
+    'My name is Kishen Lodhia',
+    'I am a Software Engineer',
+    "Currently studying master's at Queensland University of Technology (Brisbane, AU)",
+    "Here you will find a showcase of my skills, experience and projects in the field of software engineering,",
+    "Feel free to explore and get in touch with me to discuss any potential opportunities or collaborations."
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: ScreenHelper.isMobile(context)
           ? MediaQuery.of(context).size.width * 0.8
-          : null,
+          : MediaQuery.of(context).size.width * 0.6,
       padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          MessageItem(message: 'Hi there!'),
-          MessageItem(message: 'My name is Kishen Lodhia'),
-          MessageItem(message: 'I am a Software Engineer'),
-          MessageItem(
-              message: 'Engineering the future\nOne line of code at a time'),
-          MessageItem(
-              message:
-                  "Currently studying master's at \nQueensland University of Technology (Brisbane, AU)"),
-          MessageItem(
-            message:
-                "Welcome to my portfolio! Here you will find a showcase of my skills, experience and \n"
-                "projects in the field of software engineering, along with my passion for \n"
-                "artificial intelligence, user interface and experience design. Feel free to explore and get in touch with \n"
-                "me to discuss any potential opportunities or collaborations.",
-          ),
-        ],
+        children: texts.mapIndexed((e, element) {
+          return MessageItem(
+            message: e,
+            duration: element * 50,
+          );
+        }).toList(),
       ),
     );
   }
 }
 
-class MessageItem extends StatelessWidget {
+class MessageItem extends StatefulWidget {
   const MessageItem({
     super.key,
     required this.message,
+    required this.duration,
   });
 
   final String message;
+  final int duration;
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: kCaptionColor.withOpacity(0.3),
-      ),
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(5),
-      duration: const Duration(seconds: 1),
-      child: Text(message),
-    );
-  }
+  State<MessageItem> createState() => _MessageItemState();
 }
 
-class MessageItem2 extends StatefulWidget {
-  const MessageItem2({
-    super.key,
-    required this.message,
-  });
-
-  final String message;
-
-  @override
-  State<MessageItem2> createState() => _MessageItem2State();
-}
-
-class _MessageItem2State extends State<MessageItem2>
-    with TickerProviderStateMixin {
+class _MessageItemState extends State<MessageItem>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 2),
+    duration: Duration(milliseconds: 600 + widget.duration),
     vsync: this,
-  )..resync(this);
-  late final Animation<double> _animation = CurvedAnimation(
+  )..forward();
+
+  late final Animation<Offset> animation = Tween<Offset>(
+    begin: Offset(0, (widget.duration / 120)),
+    end: Offset.zero,
+  ).animate(CurvedAnimation(
     parent: _controller,
-    curve: Curves.easeIn,
-  );
+    curve: Curves.easeOutCubic,
+  ));
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  bool isHovered = false;
+  @override
   Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animation,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: kCaptionColor.withOpacity(0.1),
+    return SlideTransition(
+      position: animation,
+      child: FocusableActionDetector(
+        onShowHoverHighlight: (value) {
+          setState(() {
+            if (value) {
+              isHovered = true;
+            } else {
+              isHovered = false;
+            }
+          });
+        },
+        child: AnimatedContainer(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: kCaptionColor.withOpacity(0.3),
+          ),
+          padding: const EdgeInsets.all(15),
+          margin: const EdgeInsets.all(5),
+          duration: const Duration(seconds: 1),
+          child: AnimatedDefaultTextStyle(
+            style: isHovered
+                ? GoogleFonts.roboto(fontSize: 16)
+                : GoogleFonts.roboto(fontSize: 14),
+            duration: const Duration(milliseconds: 200),
+            child: Text(widget.message),
+          ),
         ),
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.all(5),
-        child: Text(widget.message),
       ),
     );
   }

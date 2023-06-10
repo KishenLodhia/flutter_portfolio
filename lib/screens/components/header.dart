@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/globals.dart';
+import 'package:flutter_portfolio/screens/components/logo.dart';
 import 'package:flutter_portfolio/utils/screen_helper.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatefulWidget {
   const Header({super.key, required this.pageController});
 
   final PageController pageController;
 
+  @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> {
+  double logoHeight = 50;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,23 +25,27 @@ class Header extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Logo(),
+          Logo(
+            pageController: widget.pageController,
+          ),
           const Spacer(),
           if (!ScreenHelper.isMobile(context)) ...[
             Row(
               children: [
-                HeaderItem(
-                  label: 'Home',
-                  onTap: () {
-                    pageController.animateToPage(0,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.ease);
-                  },
+                FocusableActionDetector(
+                  child: HeaderItem(
+                    label: 'Home',
+                    onTap: () {
+                      widget.pageController.animateToPage(0,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                    },
+                  ),
                 ),
                 HeaderItem(
                   label: 'Projects',
                   onTap: () {
-                    pageController.animateToPage(1,
+                    widget.pageController.animateToPage(1,
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.ease);
                   },
@@ -42,7 +53,7 @@ class Header extends StatelessWidget {
                 HeaderItem(
                   label: 'Achievements',
                   onTap: () {
-                    pageController.animateToPage(2,
+                    widget.pageController.animateToPage(2,
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.ease);
                   },
@@ -50,7 +61,7 @@ class Header extends StatelessWidget {
                 HeaderItem(
                   label: 'Blog',
                   onTap: () {
-                    pageController.animateToPage(3,
+                    widget.pageController.animateToPage(3,
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.ease);
                   },
@@ -66,54 +77,45 @@ class Header extends StatelessWidget {
   }
 }
 
-class HeaderItem extends StatelessWidget {
+class HeaderItem extends StatefulWidget {
   const HeaderItem({super.key, required this.label, this.onTap});
-
   final String label;
   final void Function()? onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: TextButton(
-        onPressed: onTap,
-        child: Text(
-          label,
-          style: GoogleFonts.audiowide(color: Colors.white, fontSize: 18),
-        ),
-      ),
-    );
-  }
+  State<HeaderItem> createState() => _HeaderItemState();
 }
 
-class Logo extends StatelessWidget {
-  const Logo({
-    super.key,
-  });
+class _HeaderItemState extends State<HeaderItem> {
+  bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: "K",
-            style: GoogleFonts.oswald(
-              color: kAccentColor,
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold,
+    return FocusableActionDetector(
+      onShowHoverHighlight: (value) {
+        setState(() {
+          if (value) {
+            isHovered = true;
+          } else {
+            isHovered = false;
+          }
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: TextButton(
+          onPressed: widget.onTap,
+          child: AnimatedDefaultTextStyle(
+            style: isHovered
+                ? GoogleFonts.audiowide(color: Colors.blue, fontSize: 22)
+                : GoogleFonts.audiowide(color: Colors.white, fontSize: 18),
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOutCirc,
+            child: Text(
+              widget.label,
             ),
           ),
-          TextSpan(
-            text: "L.",
-            style: GoogleFonts.oswald(
-              color: kCaptionColor,
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
