@@ -62,26 +62,42 @@ class AchievementCard extends StatelessWidget {
                     onPressed: () async {
                       if (ScreenHelper.isMobile(context)) {
                         showModalBottomSheet(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            isScrollControlled: true,
+                            // useSafeArea: true,
                             context: context,
                             builder: (context) {
                               return Container(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Description',
-                                      style: GoogleFonts.roboto(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      achievement.description,
-                                      style: GoogleFonts.roboto(
-                                          color: Colors.black),
-                                    ),
-                                  ],
+                                height: ScreenHelper.height(context) * 0.8,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      InteractiveViewer(
+                                        child: CachedNetworkImage(
+                                            imageUrl: achievement.image),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(15),
+                                        child: Text(
+                                          'Description',
+                                          style: GoogleFonts.roboto(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(15),
+                                        child: Text(
+                                          achievement.description,
+                                          style: GoogleFonts.roboto(
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             });

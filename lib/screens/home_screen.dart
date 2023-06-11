@@ -145,8 +145,8 @@ class _MessageItemState extends State<MessageItem>
           duration: const Duration(seconds: 1),
           child: AnimatedDefaultTextStyle(
             style: isHovered
-                ? GoogleFonts.roboto(fontSize: 16)
-                : GoogleFonts.roboto(fontSize: 14),
+                ? GoogleFonts.roboto(fontSize: 16, color: Colors.white)
+                : GoogleFonts.roboto(fontSize: 14, color: Colors.white),
             duration: const Duration(milliseconds: 200),
             child: Text(widget.message),
           ),
