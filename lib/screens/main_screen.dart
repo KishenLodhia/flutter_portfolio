@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
       endDrawer: customDrawer(context),
       appBar: ScreenHelper.isMobile(context)
           ? AppBar(
-              toolbarHeight: 100,
+              centerTitle: true,
               foregroundColor: kContrastColor,
               backgroundColor: kContrastColor,
               title: const Logo(),
@@ -56,7 +56,7 @@ class MainScreen extends StatelessWidget {
 
   Widget customDrawer(BuildContext context) {
     return ClipRRect(
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.hardEdge,
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(25),
         bottomLeft: Radius.circular(25),

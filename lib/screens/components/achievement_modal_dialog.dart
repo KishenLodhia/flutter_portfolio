@@ -13,7 +13,7 @@ class AchievementModalDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.hardEdge,
       content: Container(
         height: 500,
         width: ScreenHelper.width(context) * 0.8,

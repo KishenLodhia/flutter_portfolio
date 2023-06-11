@@ -27,13 +27,9 @@ class ProjectDetails extends StatelessWidget {
             SizedBox(
               width: ScreenHelper.width(context),
               height: ScreenHelper.isMobile(context) ? 200 : 500,
-              child: Hero(
-                transitionOnUserGestures: true,
-                tag: project.name,
-                child: CachedNetworkImage(
-                  imageUrl: project.image ?? '',
-                  fit: BoxFit.cover,
-                ),
+              child: CachedNetworkImage(
+                imageUrl: project.image ?? '',
+                fit: BoxFit.cover,
               ),
             ),
             Container(

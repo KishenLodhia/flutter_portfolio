@@ -22,12 +22,17 @@ class AchievementsScreen extends StatelessWidget {
             children: [
               const SideHeading(heading: 'Achievements'),
               Expanded(
-                child: ListView.builder(
+                child: GridView.builder(
                   itemCount: data.length,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                  padding: const EdgeInsets.all(20),
                   scrollDirection: Axis.horizontal,
-                  clipBehavior: Clip.antiAlias,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.2,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                  ),
+                  clipBehavior: Clip.hardEdge,
                   itemBuilder: (BuildContext context, int index) {
                     return AchievementCard(achievement: data[index]);
                   },

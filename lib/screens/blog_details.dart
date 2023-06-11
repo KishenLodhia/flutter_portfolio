@@ -27,13 +27,9 @@ class BlogDetails extends StatelessWidget {
             SizedBox(
               width: ScreenHelper.width(context),
               height: ScreenHelper.isMobile(context) ? 200 : 500,
-              child: Hero(
-                transitionOnUserGestures: true,
-                tag: blog.title,
-                child: CachedNetworkImage(
-                  imageUrl: blog.image,
-                  fit: BoxFit.cover,
-                ),
+              child: CachedNetworkImage(
+                imageUrl: blog.image,
+                fit: BoxFit.cover,
               ),
             ),
             Container(

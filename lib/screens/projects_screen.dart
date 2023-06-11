@@ -27,11 +27,12 @@ class ProjectsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   scrollDirection: Axis.horizontal,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.2,
                     crossAxisCount: 2,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                   ),
-                  clipBehavior: Clip.antiAlias,
+                  clipBehavior: Clip.hardEdge,
                   itemBuilder: (BuildContext context, int index) {
                     return ProjectCard(project: data[index]);
                   },

@@ -16,7 +16,7 @@ class AchievementCard extends StatelessWidget {
       elevation: 10,
       margin: const EdgeInsets.all(10),
       color: const Color.fromRGBO(2, 77, 139, 1),
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.hardEdge,
       child: SizedBox(
         height: 200,
         width: 400,
@@ -40,14 +40,15 @@ class AchievementCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    achievement.title,
-                    style: GoogleFonts.audiowide(
-                      fontSize: 15,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
+                      achievement.title,
+                      style: GoogleFonts.audiowide(),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
                   ),
                 ),
               ),
@@ -62,12 +63,12 @@ class AchievementCard extends StatelessWidget {
                     onPressed: () async {
                       if (ScreenHelper.isMobile(context)) {
                         showModalBottomSheet(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            clipBehavior: Clip.hardEdge,
                             isScrollControlled: true,
                             // useSafeArea: true,
                             context: context,
                             builder: (context) {
-                              return Container(
+                              return SizedBox(
                                 height: ScreenHelper.height(context) * 0.8,
                                 child: SingleChildScrollView(
                                   child: Column(

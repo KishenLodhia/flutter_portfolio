@@ -16,7 +16,7 @@ class BlogCard extends StatelessWidget {
       elevation: 10,
       margin: const EdgeInsets.all(10),
       color: const Color.fromRGBO(2, 77, 139, 1),
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.hardEdge,
       child: SizedBox(
         height: 200,
         width: 400,

@@ -220,7 +220,7 @@ class _AdminProjectScreenState extends State<AdminProjectScreen> {
                         ),
                         Container(
                           margin: const EdgeInsets.all(10),
-                          clipBehavior: Clip.antiAlias,
+                          clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,

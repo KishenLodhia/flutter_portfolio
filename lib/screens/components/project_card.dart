@@ -17,84 +17,77 @@ class ProjectCard extends StatelessWidget {
       elevation: 10,
       margin: const EdgeInsets.all(10),
       color: const Color.fromRGBO(2, 77, 139, 1),
-      clipBehavior: Clip.antiAlias,
-      child: SizedBox(
-        height: 250,
-        width: 250,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              fit: FlexFit.tight,
-              flex: 5,
-              child: SizedBox(
-                  width: double.infinity,
-                  child: Hero(
-                    tag: project.name,
-                    child: CachedNetworkImage(
-                      imageUrl: project.image ?? '',
-                      fit: BoxFit.cover,
-                    ),
-                  )),
-            ),
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    project.name,
-                    style: GoogleFonts.audiowide(
-                      fontSize: 15,
-                    ),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+      clipBehavior: Clip.hardEdge,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 5,
+            child: SizedBox(
+                width: double.infinity,
+                child: CachedNetworkImage(
+                  imageUrl: project.image ?? '',
+                  fit: BoxFit.cover,
+                )),
+          ),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  project.name,
+                  style: GoogleFonts.audiowide(
+                    fontSize: 15,
                   ),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                              clipBehavior: Clip.antiAlias,
-                              context: context,
-                              builder: (context) {
-                                return CustomBottomSheet(project: project);
-                              });
-                        },
-                        child: const Text('Quick Glance'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) =>
-                                  ProjectDetails(project: project),
-                            ),
-                          );
-                        },
-                        child: const Text('View more'),
-                      ),
-                    ],
-                  ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            clipBehavior: Clip.hardEdge,
+                            context: context,
+                            builder: (context) {
+                              return CustomBottomSheet(project: project);
+                            });
+                      },
+                      child: const Text('Quick Glance'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) =>
+                                ProjectDetails(project: project),
+                          ),
+                        );
+                      },
+                      child: const Text('View more'),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
