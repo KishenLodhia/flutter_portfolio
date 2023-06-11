@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/model/blog.dart';
 import 'package:flutter_portfolio/screens/blog_details.dart';
@@ -61,7 +62,7 @@ class BlogCard extends StatelessWidget {
                     onPressed: () async {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                           builder: (context) => BlogDetails(blog: blog),
                         ),
                       );
