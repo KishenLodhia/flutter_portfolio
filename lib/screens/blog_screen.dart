@@ -23,6 +23,7 @@ class BlogScreen extends StatelessWidget {
               const SideHeading(heading: 'Blogs'),
               Expanded(
                 child: GridView.builder(
+                  primary: false,
                   itemCount: data.length,
                   padding: const EdgeInsets.all(20),
                   scrollDirection: Axis.horizontal,

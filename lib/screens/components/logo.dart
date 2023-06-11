@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/utils/screen_helper.dart';
 
 class Logo extends StatefulWidget {
   const Logo({
@@ -15,6 +16,17 @@ class _LogoState extends State<Logo> {
   double logoHeight = 50;
   @override
   Widget build(BuildContext context) {
+    if (ScreenHelper.isMobile(context)) {
+      return IconButton(
+          onPressed: () {},
+          icon: SizedBox(
+            height: 30,
+            child: Image.asset(
+              'lib/assets/images/logo_lq.png',
+              filterQuality: FilterQuality.high,
+            ),
+          ));
+    }
     return MouseRegion(
       cursor: MaterialStateMouseCursor.clickable,
       onEnter: (event) {
@@ -41,7 +53,6 @@ class _LogoState extends State<Logo> {
           },
           child: Image.asset(
             'lib/assets/images/logo_lq.png',
-            filterQuality: FilterQuality.high,
           ),
         ),
       ),

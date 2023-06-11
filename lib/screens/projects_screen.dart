@@ -23,6 +23,7 @@ class ProjectsScreen extends StatelessWidget {
               const SideHeading(heading: 'Projects'),
               Expanded(
                 child: GridView.builder(
+                  primary: false,
                   itemCount: data.length,
                   padding: const EdgeInsets.all(20),
                   scrollDirection: Axis.horizontal,

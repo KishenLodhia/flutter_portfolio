@@ -43,8 +43,8 @@ class MainScreen extends StatelessWidget {
           ],
           Expanded(
             child: PageView(
-                physics: const BouncingScrollPhysics(),
-                pageSnapping: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                pageSnapping: ScreenHelper.isMobile(context) ? false : true,
                 scrollDirection: Axis.vertical,
                 controller: controller,
                 children: screenList),
